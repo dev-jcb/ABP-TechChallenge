@@ -1,0 +1,21 @@
+{
+  "production": true,
+  "application": {
+    "baseUrl":"http://localhost:4200",
+    "name": "TechChallenge",
+    "logoUrl": ""
+  },
+  "oAuthConfig": {
+    "issuer": "https://localhost:44364",
+    "redirectUri": "https://localhost:44364",
+    "clientId": "TechChallenge_App",
+    "responseType": "code",
+    "scope": "offline_access openid profile email phone TechChallenge"
+  },
+  "apis": {
+    "default": {
+      "url": "https://localhost:44364",
+      "rootNamespace": "TechChallenge"
+    }
+  }
+}

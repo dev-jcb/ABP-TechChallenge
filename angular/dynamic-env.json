@@ -1,0 +1,21 @@
+{
+  "production": true,
+  "application": {
+    "baseUrl":"https://techchallenge-web",
+    "name": "TechChallenge",
+    "logoUrl": ""
+  },
+  "oAuthConfig": {
+    "issuer": "https://techchallenge-api/",
+    "redirectUri": "https://techchallenge",
+    "clientId": "TechChallenge_App",
+    "responseType": "code",
+    "scope": "offline_access openid profile email phone"
+  },
+  "apis": {
+    "default": {
+      "url": "https://techchallenge-api",
+      "rootNamespace": "TechChallenge"
+    }
+  }
+}
