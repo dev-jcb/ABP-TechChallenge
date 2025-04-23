@@ -34,7 +34,7 @@
               <i class="fa fa-cog me-1"></i>{{ '::Actions' | abpLocalization }}
             </button>
             <div ngbDropdownMenu>
-              <button ngbDropdownItem (click)="editContentEntry(row)">
+              <button ngbDropdownItem (click)="editContentEntry(row.id)">
                 {{ '::Edit' | abpLocalization }}
               </button>
               <button ngbDropdownItem (click)="deleteContentEntry(row.id)">
