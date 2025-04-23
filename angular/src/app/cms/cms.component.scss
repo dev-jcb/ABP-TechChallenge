@@ -1,0 +1,19 @@
+nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+  }
+}
+
+.quill-editor {
+  width: 100%;
+  min-height: 200px;
+  height: auto;
+  box-sizing: border-box;
+}

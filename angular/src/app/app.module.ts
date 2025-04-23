@@ -11,13 +11,16 @@ import { ThemeBasicModule, provideThemeBasicConfig } from '@abp/ng.theme.basic';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,8 +28,10 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     ThemeSharedModule,
     CoreModule,
     ThemeBasicModule,
+    FormsModule
   ],
-  providers: [APP_ROUTE_PROVIDER,
+  providers: [
+    APP_ROUTE_PROVIDER,
     provideAbpCore(
       withOptions({
         environment,

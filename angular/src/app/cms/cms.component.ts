@@ -1,0 +1,92 @@
+import { Component, OnInit } from '@angular/core';
+import { CmsService } from './cms.service';
+
+import{FormGroup, FormBuilder, Validators} from '@angular/forms';
+
+@Component({
+  standalone: false,
+  selector: 'app-cms',
+  templateUrl: './cms.component.html',
+  styleUrls: ['./cms.component.scss']
+})
+export class CmsComponent implements OnInit {
+  contentEntries: any[] = []; // Array to store content entries
+  newContent: any = { title: '', slug: '', content: '', isHomePage:false }; // Model for new content
+  selectedContent: any = null; // Model for editing content
+
+  form: FormGroup;
+  isModalOpen = false;
+
+  quillConfig = {
+    toolbar: [
+      ['bold', 'italic', 'underline'], // Formatting buttons
+      [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
+      ['link', 'image'], // Link and image buttons
+    ],
+  };
+
+  constructor(private cmsService: CmsService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit() {
+    this.loadContentEntries();
+  }
+
+  // Read: Load all content entries
+  loadContentEntries() {
+    this.cmsService.getContentEntries();
+  }
+
+  // Create: Add a new content entry
+  createContentEntry() {
+    // this.cmsService.createContentEntry(this.newContent).subscribe(entry => {
+    //   this.contentEntries.push(entry);
+    //   this.newContent = { title: '', slug: '', content: '' }; // Reset form
+    // });
+
+    this.selectedContent = {} as any;
+    this.buildForm();
+    this.isModalOpen = true;
+  }
+
+  buildForm() {
+    this.form = this.fb.group({
+      title: [this.selectedContent.title || '', Validators.required],
+      slug: [this.selectedContent.slug || '', Validators.required],
+      content: [this.selectedContent.content || ''],
+      isHomePage: [this.selectedContent.isHomePage || false],
+    });
+  }
+
+  saveContentEntry() {
+    if (this.form.valid) {
+      const contentEntry = this.form.value;
+      if (this.selectedContent?.id) {
+        // Update existing entry
+        this.cmsService.updateContentEntry(contentEntry).subscribe(() => {
+          this.loadContentEntries();
+          this.isModalOpen = false;
+        });
+      } else {
+        // Create new entry
+        this.cmsService.createContentEntry(contentEntry).subscribe(() => {
+          this.loadContentEntries();
+          this.isModalOpen = false;
+        });
+      }
+    }
+  }
+
+  // Delete: Remove a content entry
+  deleteContentEntry(id: number): void {
+    this.cmsService.deleteContentEntry(id).subscribe(() => {
+      this.contentEntries = this.contentEntries.filter(entry => entry.id !== id);
+    });
+  }
+
+  // Select a content entry for editing
+  selectContentEntry(entry: any): void {
+    this.selectedContent = { ...entry }; // Create a copy for editing
+  }
+}

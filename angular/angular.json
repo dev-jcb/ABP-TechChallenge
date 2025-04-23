@@ -77,6 +77,11 @@
                 "input": "node_modules/ng-zorro-antd/tree/style/index.min.css",
                 "inject": false,
                 "bundleName": "ng-zorro-antd-tree"
+              },
+              {
+                "input": "node_modules/quill/dist/quill.snow.css",
+                "inject": true,
+                "bundleName": "quill-snow"
               }
             ],
             "scripts": []
