@@ -2,7 +2,7 @@
 
 namespace TechChallenge.Services.Dtos.ContentEntries
 {
-    public class ContentEntryDto : EntityDto<Guid>
+    public class ContentEntryDto : AuditedEntityDto<Guid>
     {
         public string Title { get; set; }
         public string Slug { get; set; }

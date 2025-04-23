@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TechChallenge.Entities;
 using TechChallenge.Entities.Books;
+using TechChallenge.Entities.ContentEntries;
 using TechChallenge.Services.Dtos.Books;
 using TechChallenge.Services.Dtos.ContentEntries;
 

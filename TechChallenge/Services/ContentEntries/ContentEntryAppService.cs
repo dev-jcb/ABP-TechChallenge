@@ -1,10 +1,10 @@
-﻿using TechChallenge.Entities;
-using TechChallenge.Services.Dtos.ContentEntries;
+﻿using TechChallenge.Services.Dtos.ContentEntries;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Domain.Repositories;
 using System.Linq.Dynamic.Core;
 using Microsoft.AspNetCore.Authorization;
+using TechChallenge.Entities.ContentEntries;
 using TechChallenge.Permissions;
 
 namespace TechChallenge.Services.ContentEntries

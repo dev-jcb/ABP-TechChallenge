@@ -1,6 +1,6 @@
 ﻿using Volo.Abp.Domain.Entities.Auditing;
 
-namespace TechChallenge.Entities
+namespace TechChallenge.Entities.ContentEntries
 {
     public class ContentEntry : AuditedAggregateRoot<Guid>
     {

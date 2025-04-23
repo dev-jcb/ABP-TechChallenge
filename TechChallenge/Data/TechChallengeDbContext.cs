@@ -11,14 +11,15 @@ using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using TechChallenge.Entities.Books;
-using TechChallenge.Entities;
+using TechChallenge.Entities.ContentEntries;
 
 namespace TechChallenge.Data;
 
 public class TechChallengeDbContext : AbpDbContext<TechChallengeDbContext>
 {
     public DbSet<Book> Books { get; set; }
-    
+    public DbSet<ContentEntry> ContentEntries { get; set; }
+
     public const string DbTablePrefix = "App";
     public const string DbSchema = null;
 
