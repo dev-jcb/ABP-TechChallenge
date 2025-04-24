@@ -13,12 +13,20 @@ export class CmsViewerComponent implements OnInit {
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
-    if (slug) {
-      this.cmsService.getContentEntryBySlug(slug).subscribe((result) => {
-        if (result && result.htmlContent) {
-          this.htmlContent = result.htmlContent;
+
+    this.route.params.subscribe((params) => {
+        const slug = params['slug'];
+        if(slug) {
+            this.loadContent(slug);
         }
-      });
-    }
+    });
+  }
+
+  private loadContent (slug: string): void {
+        this.cmsService.getContentEntryBySlug(slug).subscribe((result) => {
+          if (result && result.htmlContent) {
+            this.htmlContent = result.htmlContent;
+          }
+        });
   }
 }

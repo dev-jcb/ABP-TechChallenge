@@ -16,6 +16,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { APP_ROUTE_PROVIDER } from './route.provider';
+import { CMS_ROUTE_PROVIDER } from './cms/cms-route.provider';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,9 @@ import { APP_ROUTE_PROVIDER } from './route.provider';
     provideTenantManagementConfig(),
     provideAbpThemeShared(),
     provideThemeBasicConfig(),
+    CMS_ROUTE_PROVIDER,
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

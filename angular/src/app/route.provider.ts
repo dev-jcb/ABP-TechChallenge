@@ -23,13 +23,6 @@ function configureRoutes() {
       iconClass: 'fas fa-book',
       layout: eLayoutType.application,
       requiredPolicy: 'TechChallenge.Books',
-    },
-    {
-      path: '/cms',
-      name: '::Menu:CMS',
-      iconClass: 'fas fa-home',
-      layout: eLayoutType.application,
-      requiredPolicy: 'TechChallenge.ContentEntries',
-    },
+    }
   ]);
 }

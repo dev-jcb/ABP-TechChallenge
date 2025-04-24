@@ -19,9 +19,18 @@ export class CmsComponent implements OnInit {
 
   quillConfig = {
     toolbar: [
-      ['bold', 'italic', 'underline'], // Formatting buttons
+      ['bold', 'italic', 'underline', 'strike'], // Formatting buttons
+      [{ header: 1 }, { header: 2 }], // Header buttons
       [{ list: 'ordered' }, { list: 'bullet' }], // List buttons
-      ['link', 'image'], // Link and image buttons
+      [{ script: 'sub' }, { script: 'super' }], // Subscript/Superscript buttons
+      [{ indent: '-1' }, { indent: '+1' }], // Indent buttons
+      [{ direction: 'rtl' }], // Text direction
+      [{ size: ['small', false, 'large', 'huge'] }], // Font size
+      [{ color: [] }, { background: [] }], // Text color and background
+      [{ font: [] }], // Font family
+      [{ align: [] }], // Text alignment
+      ['link', 'image'], // Link, image, and video buttons
+      ['clean'], // Remove formatting button
     ],
   };
 
