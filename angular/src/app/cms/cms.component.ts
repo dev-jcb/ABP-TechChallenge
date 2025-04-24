@@ -11,7 +11,7 @@ import{FormGroup, FormBuilder, Validators} from '@angular/forms';
 })
 export class CmsComponent implements OnInit {
   contentEntries: any[] = []; // Array to store content entries
-  newContent: any = { title: '', slug: '', content: '', isHomePage:false }; // Model for new content
+  newContent: any = { title: '', slug: '', htmlContent: '', isHomePage:false }; // Model for new content
   selectedContent: any = null; // Model for editing content
 
   form: FormGroup;
@@ -27,7 +27,15 @@ export class CmsComponent implements OnInit {
 
   constructor(private cmsService: CmsService,
     private fb: FormBuilder
-  ) {}
+  ) {
+    this.form = this.fb.group({
+      id: [''],
+      title: ['', Validators.required],
+      slug: ['', Validators.required],
+      htmlContent: [''],
+      isHomePage: [false],
+    });
+  }
 
   ngOnInit() {
     this.loadContentEntries();
@@ -35,16 +43,13 @@ export class CmsComponent implements OnInit {
 
   // Read: Load all content entries
   loadContentEntries() {
-    this.cmsService.getContentEntries();
+    this.cmsService.getContentEntries().subscribe((result) => {
+      this.contentEntries = result.items; // Assuming 'items' contains the array of content entries
+    });
   }
 
   // Create: Add a new content entry
   createContentEntry() {
-    // this.cmsService.createContentEntry(this.newContent).subscribe(entry => {
-    //   this.contentEntries.push(entry);
-    //   this.newContent = { title: '', slug: '', content: '' }; // Reset form
-    // });
-
     this.selectedContent = {} as any;
     this.buildForm();
     this.isModalOpen = true;
@@ -52,9 +57,10 @@ export class CmsComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
+      id: [this.selectedContent?.id || ''],
       title: [this.selectedContent.title || '', Validators.required],
       slug: [this.selectedContent.slug || '', Validators.required],
-      content: [this.selectedContent.content || ''],
+      htmlContent: [this.selectedContent.htmlContent || ''],
       isHomePage: [this.selectedContent.isHomePage || false],
     });
   }
@@ -76,6 +82,14 @@ export class CmsComponent implements OnInit {
         });
       }
     }
+  }
+
+  editContentEntry(id: string){
+    this.cmsService.getContentEntry(id).subscribe((entry) => {
+      this.selectedContent = entry;
+      this.buildForm();
+      this.isModalOpen = true;
+    });
   }
 
   // Delete: Remove a content entry
