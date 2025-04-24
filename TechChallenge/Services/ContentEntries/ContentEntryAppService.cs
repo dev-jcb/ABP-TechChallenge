@@ -25,7 +25,7 @@ namespace TechChallenge.Services.ContentEntries
             return ObjectMapper.Map<ContentEntry, ContentEntryDto>(contentEntry);
         }
 
-        public async Task<ContentEntryDto> GetBySlug(string slug)
+        public async Task<ContentEntryDto> GetBySlugAsync(string slug)
         {
             var contentEntry = await _repository.FirstOrDefaultAsync(x => x.Slug == slug);
             return contentEntry != null ? ObjectMapper.Map<ContentEntry, ContentEntryDto>(contentEntry) : null!;

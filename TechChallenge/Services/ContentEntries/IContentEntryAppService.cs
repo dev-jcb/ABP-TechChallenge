@@ -7,6 +7,6 @@ namespace TechChallenge.Services.ContentEntries
     public interface IContentEntryAppService : ICrudAppService<ContentEntryDto, Guid, PagedAndSortedResultRequestDto,
         CreateUpdateContentEntryDto>
     {
-        Task<ContentEntryDto> GetBySlug(string slug);
+        Task<ContentEntryDto> GetBySlugAsync(string slug);
     }
 }

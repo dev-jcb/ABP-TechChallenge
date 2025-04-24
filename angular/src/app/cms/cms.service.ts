@@ -27,6 +27,13 @@ export class CmsService {
         },
             { apiName: this.apiName });
 
+    getContentEntryBySlug = (slug: string) =>
+        this.restService.request<any, any>({
+            method: 'GET',
+            url: `/api/app/content-entry/by-slug/?slug=${slug}`,
+        },
+            { apiName: this.apiName });
+
     // Create: Add a new content entry
     createContentEntry = (content: any) =>
         this.restService.request<any, any>({
