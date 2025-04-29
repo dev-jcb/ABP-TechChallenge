@@ -9,7 +9,6 @@ using TechChallenge.Permissions;
 
 namespace TechChallenge.Services.ContentEntries
 {
-    [Authorize(TechChallengePermissions.ContentEntries.Default)]
     public class ContentEntryAppService : ApplicationService, IContentEntryAppService
     {
         private readonly IRepository<ContentEntry, Guid> _repository;
@@ -50,6 +49,7 @@ namespace TechChallenge.Services.ContentEntries
             );
         }
 
+        [Authorize(TechChallengePermissions.ContentEntries.Create)]
         public async Task<ContentEntryDto> CreateAsync(CreateUpdateContentEntryDto input)
         {
             if (input.IsHomePage)
@@ -70,6 +70,7 @@ namespace TechChallenge.Services.ContentEntries
             return ObjectMapper.Map<ContentEntry, ContentEntryDto>(contentEntry);
         }
 
+        [Authorize(TechChallengePermissions.ContentEntries.Edit)]
         public async Task<ContentEntryDto> UpdateAsync(Guid id, CreateUpdateContentEntryDto input)
         {
             var contentEntry = await _repository.GetAsync(id);
@@ -80,6 +81,8 @@ namespace TechChallenge.Services.ContentEntries
             return ObjectMapper.Map<ContentEntry, ContentEntryDto>(contentEntry);
         }
 
+
+        [Authorize(TechChallengePermissions.ContentEntries.Delete)]
         public async Task DeleteAsync(Guid id)
         {
             await _repository.DeleteAsync(id);
